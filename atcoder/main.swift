@@ -1,11 +1,21 @@
 import Foundation
 
 enum cin {
+    // 123
     static var n: Int { Int(readLine()!)! }
+    // 12 23
     static var pair: (Int, Int) { let line = readLine()!.components(separatedBy: " "); return (Int(line[0])!, Int(line[1])!) }
+    // 12 23 34
+    static var triple: (Int, Int, Int) { let line = readLine()!.components(separatedBy: " "); return (Int(line[0])!, Int(line[1])!, Int(line[2])!) }
+    // AtCoder
     static var line: String { readLine()! }
+    // At Coder
     static var arrayStr: [String] { line.components(separatedBy: " ") }
+    // 1 2 3 4
     static var array: [Int] { line.components(separatedBy: " ").map { Int($0)! } }
+    // 1
+    // 2
+    // 3
     static func v_array(count: Int) -> [Int] { (0..<count).map { _ in n } }
 }
 
