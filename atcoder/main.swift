@@ -20,18 +20,23 @@ enum cin {
 }
 
 extension Int {
+    // 123 -> [1, 2, 3]
     var digits: [Int] { Array(String(self)).map { Int(String($0))! } }
 }
 
 extension Array where Element == Int {
+    // [2, 1, 3, 2] -> 8
     var sum: Int { self.reduce(0, +) }
+    // [2, 1, 3, 2] -> [1, 2, 2, 3]
     var orderBy: [Int] { sorted() }
+    // [2, 1, 3, 2] -> [3, 2, 2, 1]
     var orderByDesc: [Int] { sorted(by: { $0 > $1 }) }
+    // [2, 1, 3, 2] -> [2, 1, 3]
     var distinct: [Int] { Array(Set(self)) }
 }
 
 extension String {
-    // cin.line.regex(match: "^(dream|dreamer|erase|eraser)*$")
+    // e.g. cin.line.regex(match: "^(dream|dreamer|erase|eraser)*$")
     func regex(match pattern: String) -> Bool {
         let regex = try! NSRegularExpression(pattern: pattern)
         return regex.firstMatch(in: self, range: NSRange(location: 0, length: self.count)) != nil
