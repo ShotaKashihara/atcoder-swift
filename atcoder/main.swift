@@ -1,54 +1,23 @@
 import Foundation
 
 enum cin {
-    static var number: Int {
-        return Int(readLine()!)!
-    }
-
-    static var pair: (Int, Int) {
-        let line = readLine()!.components(separatedBy: " ")
-        return (Int(line[0])!, Int(line[1])!)
-    }
-
-    static var line: String {
-        return readLine()!
-    }
-
-    static func array() -> [String] {
-        return line.components(separatedBy: " ")
-    }
-
-    static func array() -> [Int] {
-        return line.components(separatedBy: " ").map { Int($0)! }
-    }
-
-    static func v_array(count: Int) -> [Int] {
-        return (0..<count).map { _ in number }
-    }
+    static var n: Int { Int(readLine()!)! }
+    static var pair: (Int, Int) { let line = readLine()!.components(separatedBy: " "); return (Int(line[0])!, Int(line[1])!) }
+    static var line: String { readLine()! }
+    static var arrayStr: [String] { line.components(separatedBy: " ") }
+    static var array: [Int] { line.components(separatedBy: " ").map { Int($0)! } }
+    static func v_array(count: Int) -> [Int] { (0..<count).map { _ in n } }
 }
 
 extension Int {
-    var digits: [Int] {
-        Array(String(self)).map { Int(String($0))! }
-    }
+    var digits: [Int] { Array(String(self)).map { Int(String($0))! } }
 }
 
 extension Array where Element == Int {
-    var sum: Int {
-        return self.reduce(0, +)
-    }
-
-    func orderBy() -> [Int] {
-        return sorted()
-    }
-
-    func orderByDesc() -> [Int] {
-        return sorted(by: { $0 > $1 })
-    }
-
-    var distinct: [Int] {
-        return Array(Set(self))
-    }
+    var sum: Int { self.reduce(0, +) }
+    var orderBy: [Int] { sorted() }
+    var orderByDesc: [Int] { sorted(by: { $0 > $1 }) }
+    var distinct: [Int] { Array(Set(self)) }
 }
 
 extension String {
@@ -64,7 +33,7 @@ enum LanguageTest202001 {
     /// https://atcoder.jp/contests/language-test-202001/tasks/practice_1
     struct practice_1 {
         static func main() {
-            let a = cin.number
+            let a = cin.n
             let (b, c) = cin.pair
             let s = cin.line
             print("\(a+b+c) \(s)")
@@ -86,8 +55,8 @@ enum LanguageTest202001 {
     /// https://atcoder.jp/contests/language-test-202001/tasks/abc081_b
     struct abc081_b {
         static func main() {
-            _ = cin.number
-            var a: [Int] = cin.array()
+            _ = cin.n
+            var a = cin.array
             var ans = 0
             while (a.allSatisfy { $0 % 2 == 0 }) {
                 a = a.map { $0/2 }
@@ -99,10 +68,10 @@ enum LanguageTest202001 {
     // https://atcoder.jp/contests/language-test-202001/tasks/abc087_b
     struct abc087_b {
         static func main() {
-            let a = cin.number // 500yen
-            let b = cin.number // 100yen
-            let c = cin.number //  50yen
-            let x = cin.number
+            let a = cin.n // 500yen
+            let b = cin.n // 100yen
+            let c = cin.n //  50yen
+            let x = cin.n
 
             var ans = 0
             (0...a).forEach { a in
@@ -118,7 +87,7 @@ enum LanguageTest202001 {
     // https://atcoder.jp/contests/language-test-202001/tasks/abc083_b
     struct abc083_b {
         static func main() {
-            let nab: [Int] = cin.array()
+            let nab = cin.array
             let n = nab[0], a = nab[1], b = nab[2]
             var ans = 0
             (1...n).forEach {
@@ -130,8 +99,8 @@ enum LanguageTest202001 {
     // https://atcoder.jp/contests/language-test-202001/tasks/abc088_b
     struct abc088_b {
         static func main() {
-            _ = cin.number
-            let a: [Int] = cin.array().orderByDesc()
+            _ = cin.n
+            let a: [Int] = cin.array.orderByDesc
             var ans = 0
             a.enumerated().forEach { (offset, i) in
                 ans += offset%2==0 ? i : -i
@@ -142,7 +111,7 @@ enum LanguageTest202001 {
     // https://atcoder.jp/contests/language-test-202001/tasks/abc085_b
     struct abc085_b {
         static func main() {
-            let n = cin.number
+            let n = cin.n
             let d = cin.v_array(count: n)
             let ans = d.distinct.count
             print(ans)
