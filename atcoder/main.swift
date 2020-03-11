@@ -1,4 +1,9 @@
 import Foundation
+#if os(Linux)
+    import Glibc
+#else
+    import Darwin.C
+#endif
 
 enum cin {
     // 123
@@ -41,8 +46,20 @@ extension String {
         let regex = try! NSRegularExpression(pattern: pattern)
         return regex.firstMatch(in: self, range: NSRange(location: 0, length: self.count)) != nil
     }
-}
 
+    subscript(value: Int) -> Character {
+        self[index(at: value)]
+    }
+
+    func index(at offset: Int) -> String.Index {
+        index(startIndex, offsetBy: offset)
+    }
+    mutating func swapAt(_ index1: Int, _ index2: Int) {
+        var characters = Array(self)
+        characters.swapAt(index1, index2)
+        self = String(characters)
+    }
+}
 
 enum LanguageTest202001 {
     /// https://atcoder.jp/contests/language-test-202001/tasks/practice_1
@@ -199,6 +216,25 @@ enum LanguageTest202001 {
             print(ans ? "Yes" : "No")
         }
     }
+    // https://atcoder.jp/contests/language-test-202001/tasks/practice_2
+    struct L_InteractiveSorting {
+        static func main() {
+            let (n, _) = cin.pair
+            var s = String("ABCDEFGHIJKLMNOPQRSTUVWXYZ".prefix(n))
+            (0..<n).forEach { i in
+                (0..<n-1-i).forEach { j in
+                    print("? \(s[j]) \(s[j+1])")
+                    fflush(stdout)
+                    let ans = cin.line
+                    if ans == ">" {
+                        s.swapAt(j, j+1)
+                    }
+                }
+            }
+            print("! \(s)")
+            fflush(stdout)
+        }
+    }
 }
 
-LanguageTest202001.abc086_c.main()
+LanguageTest202001.L_InteractiveSorting.main()
