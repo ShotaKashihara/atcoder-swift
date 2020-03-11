@@ -46,14 +46,10 @@ extension String {
         let regex = try! NSRegularExpression(pattern: pattern)
         return regex.firstMatch(in: self, range: NSRange(location: 0, length: self.count)) != nil
     }
-
-    subscript(value: Int) -> Character {
-        self[index(at: value)]
-    }
-
-    func index(at offset: Int) -> String.Index {
-        index(startIndex, offsetBy: offset)
-    }
+    // "ABC"[1] -> "B"
+    subscript(value: Int) -> Character { self[index(at: value)] }
+    func index(at offset: Int) -> String.Index { index(startIndex, offsetBy: offset) }
+    // "ABC".swapAt(0, 1) -> "BAC"
     mutating func swapAt(_ index1: Int, _ index2: Int) {
         var characters = Array(self)
         characters.swapAt(index1, index2)
@@ -219,7 +215,21 @@ enum LanguageTest202001 {
     // https://atcoder.jp/contests/language-test-202001/tasks/practice_2
     struct L_InteractiveSorting {
         static func main() {
-            let (n, _) = cin.pair
+            let (_, q) = cin.pair
+            switch q {
+            case 1000:
+                solve_1000()
+            case 100:
+                solve_100()
+            case 7:
+                solve_7()
+            default:
+                break
+            }
+        }
+
+        static func solve_1000() {
+            let n = 26
             var s = String("ABCDEFGHIJKLMNOPQRSTUVWXYZ".prefix(n))
             (0..<n).forEach { i in
                 (0..<n-1-i).forEach { j in
@@ -233,6 +243,14 @@ enum LanguageTest202001 {
             }
             print("! \(s)")
             fflush(stdout)
+        }
+
+        static func solve_100() {
+            print("Not implemented.")
+        }
+
+        static func solve_7() {
+            print("Not implemented.")
         }
     }
 }
