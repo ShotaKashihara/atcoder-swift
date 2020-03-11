@@ -180,6 +180,25 @@ enum LanguageTest202001 {
             // print(cin.line.regex(match: "^(dream|dreamer|erase|eraser)*$") ? "YES" : "NO")
         }
     }
+    // https://atcoder.jp/contests/language-test-202001/tasks/arc089_a
+    struct abc086_c {
+        static func main() {
+            let n = cin.n
+            let txy = (0..<n).map { _ in cin.triple }.sorted(by: { (a,b) in a.0 < b.0 })
+            var ans = true
+            _ = txy.reduce((0, 0, 0)) { (current, next) in
+                let (t1, x1, y1) = current
+                let (t2, x2, y2) = next
+                let dxdy = abs(x2 - x1) + abs(y2 - y1)
+                let dt = abs(t2 - t1)
+                if dxdy > dt || dxdy % 2 != dt % 2 {
+                    ans = false
+                }
+                return next
+            }
+            print(ans ? "Yes" : "No")
+        }
+    }
 }
 
-LanguageTest202001.arc065_a.main()
+LanguageTest202001.abc086_c.main()
