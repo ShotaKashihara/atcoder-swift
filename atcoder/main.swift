@@ -228,6 +228,7 @@ enum LanguageTest202001 {
             }
         }
 
+        // バブルソート
         static func solve_1000() {
             let n = 26
             var s = String("ABCDEFGHIJKLMNOPQRSTUVWXYZ".prefix(n))
@@ -245,10 +246,12 @@ enum LanguageTest202001 {
             fflush(stdout)
         }
 
+        // マージソート
         static func solve_100() {
             print("Not implemented.")
         }
 
+        // 貪欲法？？
         static func solve_7() {
             print("Not implemented.")
         }
