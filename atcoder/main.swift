@@ -47,7 +47,16 @@ extension String {
         return regex.firstMatch(in: self, range: NSRange(location: 0, length: self.count)) != nil
     }
     // "ABC"[1] -> "B"
-    subscript(value: Int) -> Character { self[index(at: value)] }
+    subscript(i: Int) -> Character {
+        get {
+            self[index(at: i)]
+        }
+        set(char) {
+            var characters = Array(self)
+            characters[i] = char
+            self = String(characters)
+        }
+    }
     func index(at offset: Int) -> String.Index { index(startIndex, offsetBy: offset) }
     // "ABC".swapAt(0, 1) -> "BAC"
     mutating func swapAt(_ index1: Int, _ index2: Int) {
@@ -256,6 +265,31 @@ enum LanguageTest202001 {
             print("Not implemented.")
         }
     }
+    enum panasonic2020D {
+
+        static func main() {
+            let n = 4
+            var t: String = "           "
+            func intToAlphabet(_ i: Int, upperCase: Bool = false) -> Character {
+                return .init(Unicode.Scalar.init(upperCase ? (65+i) : (97+i))!)
+            }
+
+            func f(k: Int, c: Int) {
+                if k == n {
+                    print(t)
+                    return
+                }
+                (0..<c).forEach { i in
+                    t[k] = intToAlphabet(i)
+                    f(k: k+1, c: c)
+                }
+                t[k] = intToAlphabet(c)
+                f(k: k+1, c: c+1)
+            }
+
+            f(k: 0, c: 0)
+        }
+    }
 }
 
-LanguageTest202001.L_InteractiveSorting.main()
+LanguageTest202001.panasonic2020D.main()
