@@ -1,5 +1,7 @@
 
 
+// MARK: #### 以下、ライブラリ ####
+
 import Foundation
 #if os(Linux)
     import Glibc
