@@ -1,0 +1,34 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      // compile your SPM project
+      "label": "swift-build",
+      "type": "shell",
+      // "command": "swift build --package-path ${fileDirname}/../.."
+      "command": "swiftc ${fileDirname}/main.swift -o ${fileDirname}/main -g"
+    },
+    {
+      // ctrl+t
+      "label": "CheckTestCase",
+      "type": "shell",
+      "command": "cd ${fileDirname} && rm -f ./main && swiftc main.swift && oj test -c ./main -d ./tests",
+      "presentation": {
+        "reveal": "always",
+        "focus": true,
+        "panel": "shared",
+      }
+    },
+    {
+      // ctrl+s
+      "label": "SubmitCode",
+      "type": "shell",
+      "command": "cd ${fileDirname} && acc s main.swift",
+      "presentation": {
+        "reveal": "always",
+        "focus": true,
+        "panel": "shared",
+      }
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    // Running executables
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "[Debug] swift main",
+      // "program": "${fileDirname}/../../.build/debug/${fileBasenameNoExtension}",
+      "program": "${fileDirname}/main",
+      "args": [],
+      "cwd": "",
+      "preLaunchTask": "swift-build"
+    }
+  ]
+}
