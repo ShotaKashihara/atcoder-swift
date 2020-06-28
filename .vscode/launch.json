@@ -9,7 +9,7 @@
       // "program": "${fileDirname}/../../.build/debug/${fileBasenameNoExtension}",
       "program": "${fileDirname}/main",
       "args": [],
-      "cwd": "",
+      "cwd": "${fileDirname}/",
       "preLaunchTask": "swift-build"
     }
   ]
