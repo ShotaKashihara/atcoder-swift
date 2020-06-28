@@ -1,4 +1,35 @@
+let n = cin.int
+var count = 0
 
+func toInt(_ A: [Int]) -> Int {
+    var sum = 0
+    A.enumerated().forEach { a in
+        sum += a.element * (10 ^^ a.offset)
+    }
+    return sum
+}
+
+func dfs(_ A: inout [Int]) {
+    if toInt(A) > n {
+        return
+    } else {
+        /// 3,5,7 が1回以上含まれている
+        if A.contains(3) && A.contains(5) && A.contains(7) {
+            count += 1
+        }
+    }
+
+    for v in [3,5,7] {
+        A.append(v)
+        dfs(&A)
+        A.removeLast()
+    }
+}
+
+var A = [Int]()
+dfs(&A)
+
+print(count)
 
 // MARK: #### 以下、ライブラリ ####
 

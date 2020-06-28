@@ -44,12 +44,6 @@ extension Array where Element == Int {
     var distinct: [Int] { Array(Set(self)) }
 }
 
-precedencegroup PowerPrecedence { higherThan: MultiplicationPrecedence }
-infix operator ^^ : PowerPrecedence
-func ^^ (radix: Int, power: Int) -> Int {
-    return Int(pow(Double(radix), Double(power)))
-}
-
 extension String {
     // e.g. cin.line.regex(match: "^(dream|dreamer|erase|eraser)*$")
     func regex(match pattern: String) -> Bool {

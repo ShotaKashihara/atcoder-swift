@@ -7,6 +7,15 @@
     ],
     "description": "hogehoge"
   },
+  "DFS (複雑だけど全探索するだけ)": {
+    "scope": "swift",
+    "prefix": "DFS (複雑だけど全探索するだけ)",
+    "body": [
+      "/// よくやる再帰関数の書き方",
+      "/// https://drken1215.hatenablog.com/entry/2020/05/04/190252"
+    ],
+    "description": "よくやる再帰関数の書き方"
+  },
   "順列/組合わせ/全列挙": {
     "scope": "swift",
     "prefix": "permutation 順列 combination 組み合わせ repeatedPermutation 全列挙",
