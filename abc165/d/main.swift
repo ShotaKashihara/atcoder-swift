@@ -1,4 +1,18 @@
+let t = cin.triple
+let a = Double(t.0)
+let b = Double(t.1)
+let n = t.2
 
+// debugPrint("a: \(a), b: \(b), n: \(n)")
+
+// (1...n).map { Double($0) }.forEach { x in 
+//     let res = Int(a*x/b) - Int(a)*Int(x/b)
+//     debugPrint("x: \(x) -> [ax/b]: \(Int(a*x/b)), a[x/b]: \(Int(a)*Int(x/b)), diff: \(res)")
+//     mmax = max(mmax, res)
+// }
+
+let x = Double(min(n, Int(b)-1))
+print("\(Int(a*x/b) - Int(a)*Int(x/b))")
 
 import Foundation
 #if os(Linux)

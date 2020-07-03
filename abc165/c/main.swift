@@ -1,43 +1,62 @@
 let (n,m,q) = cin.triple
-/// 111, 112, 113, 114
-/// 222, 223, 224
-/// 333, 334
-/// 444
 
-let X = (1...q).map {_ in cin.array}
+// (3,4,3)
+// [1,1,1]
+// [1,1,2]
+// [1,1,3]
+// [1,1,4]
+// [1,2,2]
+// [1,2,3]
+// [1,2,4]
+// [1,3,3]
+// [1,3,4]
+// [1,4,4]
+// [2,2,2] ...
 
-var mmax = 0
-
-func calc(_ A: [Int]) {
-    var sum = 0
-    for x in X {
-        if A[x[1]-1] - A[x[0]-1] == x[2] {
-            sum += x[3]
-        }
-    }
-    mmax = max(mmax, sum)
+var imax = 0
+struct Q {
+    let a: Int
+    let b: Int
+    let c: Int
+    let d: Int
+}
+var qarray: [Q] = (0..<q).map { _ in
+    let (a,b,c,d) = cin.quadro
+    return Q(a: a, b: b, c: c, d: d)
 }
 
-func dfs(_ A: inout [Int]) {
-    if A.count == n {
-        calc(A)
-        // print(A)
+// 深さ優先探索DFSを組む
+func dfs(_ array: inout [Int]) {
+    if array.count == n {
+        // 最大値計算
+        calc(array)
         return
     }
 
-    let last = A.last ?? 1
-
-    for v in (last...m) {
-        A.append(v)
-        dfs(&A)
-        A.removeLast()
+    // 次の桁を全探索
+    let last = array.last ?? 1
+    (last...m).forEach { i in
+        array.append(i)
+        dfs(&array)
+        array.removeLast()
     }
 }
 
-var _A = [Int]()
-dfs(&_A)
+// 最大値を求める
+func calc(_ array: [Int]) {
+    let sum = qarray.map { q in 
+        if array[q.b-1] - array[q.a-1] == q.c {
+            return q.d
+        } else {
+            return 0
+        }
+    }.sum
+    imax = max(imax, sum)
+}
 
-print(mmax)
+var array = [Int]()
+dfs(&array)
+print(imax)
 
 import Foundation
 #if os(Linux)
