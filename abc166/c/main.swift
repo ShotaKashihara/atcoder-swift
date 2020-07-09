@@ -1,4 +1,21 @@
+let (n,m) = cin.pair
+let h = cin.array
+var ok = Array(1...n).map { _ in 1 }
+Array(1...m).forEach { _ in 
+    var (a,b) = cin.pair
+    a -= 1
+    b -= 1
+    if h[a] > h[b] {
+        ok[b] = 0
+    } else if h[a] < h[b] {
+        ok[a] = 0
+    } else {
+        ok[a] = 0
+        ok[b] = 0
+    }
+}
 
+print(ok.sum)
 
 // MARK: #### 以下、ライブラリ ####
 
@@ -42,11 +59,6 @@ extension Array where Element == Int {
     var orderByDesc: [Int] { sorted(by: { $0 > $1 }) }
     // [2, 1, 3, 2] -> [2, 1, 3]
     var distinct: [Int] { Array(Set(self)) }
-}
-
-extension ClosedRange where Element == Int {
-    /// Array(1...n) と同義
-    var toArray: [Int] { return Array<Int>(self) }
 }
 
 precedencegroup PowerPrecedence { higherThan: MultiplicationPrecedence }

@@ -44,11 +44,6 @@ extension Array where Element == Int {
     var distinct: [Int] { Array(Set(self)) }
 }
 
-extension ClosedRange where Element == Int {
-    /// Array(1...n) と同義
-    var toArray: [Int] { return Array<Int>(self) }
-}
-
 precedencegroup PowerPrecedence { higherThan: MultiplicationPrecedence }
 infix operator ^^ : PowerPrecedence
 func ^^ (radix: Int, power: Int) -> Int {

@@ -1,4 +1,6 @@
-
+let (a,b,c,k) = cin.quadro
+let s = min(a,k) - min(max(k-a-b, 0), c)
+print(s)
 
 // MARK: #### 以下、ライブラリ ####
 
@@ -16,6 +18,7 @@ enum cin {
     static var pair: (Int, Int) { let line = readLine()!.components(separatedBy: " "); return (Int(line[0])!, Int(line[1])!) }
     // 12 23 34
     static var triple: (Int, Int, Int) { let line = readLine()!.components(separatedBy: " "); return (Int(line[0])!, Int(line[1])!, Int(line[2])!) }
+    static var quadro: (Int, Int, Int, Int) { let line = readLine()!.components(separatedBy: " "); return (Int(line[0])!, Int(line[1])!, Int(line[2])!, Int(line[3])!) }
     // AtCoder
     static var str: String { readLine()! }
     // At Coder
@@ -42,11 +45,6 @@ extension Array where Element == Int {
     var orderByDesc: [Int] { sorted(by: { $0 > $1 }) }
     // [2, 1, 3, 2] -> [2, 1, 3]
     var distinct: [Int] { Array(Set(self)) }
-}
-
-extension ClosedRange where Element == Int {
-    /// Array(1...n) と同義
-    var toArray: [Int] { return Array<Int>(self) }
 }
 
 precedencegroup PowerPrecedence { higherThan: MultiplicationPrecedence }

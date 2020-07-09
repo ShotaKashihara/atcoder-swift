@@ -1,4 +1,13 @@
+let (n,k) = cin.pair
+var sset = Set<Int>()
+let array: [Int] = Array((1...k).map { _ -> [Int] in 
+    _ = cin.int
+    return cin.array
+}.joined())
 
+print(
+    (1...n).filter { !array.contains($0) }.count
+)
 
 // MARK: #### 以下、ライブラリ ####
 
@@ -42,11 +51,6 @@ extension Array where Element == Int {
     var orderByDesc: [Int] { sorted(by: { $0 > $1 }) }
     // [2, 1, 3, 2] -> [2, 1, 3]
     var distinct: [Int] { Array(Set(self)) }
-}
-
-extension ClosedRange where Element == Int {
-    /// Array(1...n) と同義
-    var toArray: [Int] { return Array<Int>(self) }
 }
 
 precedencegroup PowerPrecedence { higherThan: MultiplicationPrecedence }

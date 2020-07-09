@@ -1,4 +1,15 @@
+let s = cin.str
+let t = cin.str
 
+if s.allSatisfy({ $0.isLowercase }), 
+    t.allSatisfy({ $0.isLowercase }),
+    s.count <= 10,
+    t.prefix(s.count) == s,
+    t.count == s.count + 1 {
+        print("Yes")
+} else {
+    print("No")
+}
 
 // MARK: #### 以下、ライブラリ ####
 
@@ -42,11 +53,6 @@ extension Array where Element == Int {
     var orderByDesc: [Int] { sorted(by: { $0 > $1 }) }
     // [2, 1, 3, 2] -> [2, 1, 3]
     var distinct: [Int] { Array(Set(self)) }
-}
-
-extension ClosedRange where Element == Int {
-    /// Array(1...n) と同義
-    var toArray: [Int] { return Array<Int>(self) }
 }
 
 precedencegroup PowerPrecedence { higherThan: MultiplicationPrecedence }

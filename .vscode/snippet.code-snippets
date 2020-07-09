@@ -16,6 +16,24 @@
     ],
     "description": "よくやる再帰関数の書き方"
   },
+  "bit全探索(index)": {
+    "scope": "swift",
+    "prefix": "bit全探索",
+    "body": [
+      "typealias Index = Int",
+      "func bit全探索(n: Int) -> [[Index]] {",
+      "    (0..<1<<n).map { bit in",
+      "        var s = [Int]()",
+      "        for i in 0..<n {",
+      "            if bit & 1<<i > 0 {",
+      "                s.append(i)",
+      "            }",
+      "        }",
+      "        return s",
+      "    }",
+      "}"
+    ]
+  },
   "順列/組合わせ/全列挙": {
     "scope": "swift",
     "prefix": "permutation 順列 combination 組み合わせ repeatedPermutation 全列挙",

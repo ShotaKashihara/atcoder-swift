@@ -1,4 +1,5 @@
-
+let s = cin.str
+print(s == "ABC" ? "ARC" : "ABC")
 
 // MARK: #### 以下、ライブラリ ####
 
@@ -42,11 +43,6 @@ extension Array where Element == Int {
     var orderByDesc: [Int] { sorted(by: { $0 > $1 }) }
     // [2, 1, 3, 2] -> [2, 1, 3]
     var distinct: [Int] { Array(Set(self)) }
-}
-
-extension ClosedRange where Element == Int {
-    /// Array(1...n) と同義
-    var toArray: [Int] { return Array<Int>(self) }
 }
 
 precedencegroup PowerPrecedence { higherThan: MultiplicationPrecedence }

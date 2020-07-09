@@ -1,6 +1,27 @@
+// 全探索したい 
+// A,B が取りうる上限を見つける
 
+for i in (1...1000) {
+    let a = i
+    let b = i-1
+    if a^^5 - b^^5 > 10^^9 {
+        break
+    }
+}
 
-// MARK: #### 以下、ライブラリ ####
+// 120までA，Bを全探索すれば良さそうということがわかった。
+
+// 本題
+
+let x = cin.int
+Array(-120...120).forEach { a in 
+    Array(-120...120).forEach { b in
+        if a^^5 - b^^5 == x {
+            print("\(a) \(b)")
+            exit(0)
+        }
+    }
+}
 
 import Foundation
 #if os(Linux)
@@ -42,11 +63,6 @@ extension Array where Element == Int {
     var orderByDesc: [Int] { sorted(by: { $0 > $1 }) }
     // [2, 1, 3, 2] -> [2, 1, 3]
     var distinct: [Int] { Array(Set(self)) }
-}
-
-extension ClosedRange where Element == Int {
-    /// Array(1...n) と同義
-    var toArray: [Int] { return Array<Int>(self) }
 }
 
 precedencegroup PowerPrecedence { higherThan: MultiplicationPrecedence }

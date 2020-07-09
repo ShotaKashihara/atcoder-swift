@@ -1,4 +1,39 @@
+let (n,m,x) = cin.triple
+/// [60 2 2 2]
+let CA = Array(1...n).map { _ in
+    return cin.array
+}
 
+var v = Int.max
+for indexies in bit全探索(n: n) {
+    let ca = indexies.map { CA[$0] }
+    let c = ca.map { $0[0] }.sum
+    let res = (1...m).allSatisfy { mi in
+        return x <= ca.map { $0[mi] }.sum
+    }
+    if res {
+        v = min(v, c)
+    }
+}
+
+if v == Int.max {
+    print(-1)
+} else {
+    print(v)
+}
+
+typealias Index = Int
+func bit全探索(n: Int) -> [[Index]] {
+    (0..<1<<n).map { bit in
+        var s = [Int]()
+        for i in 0..<n {
+            if bit & 1<<i > 0 {
+                s.append(i)
+            }
+        }
+        return s
+    }
+}
 
 // MARK: #### 以下、ライブラリ ####
 
@@ -42,11 +77,6 @@ extension Array where Element == Int {
     var orderByDesc: [Int] { sorted(by: { $0 > $1 }) }
     // [2, 1, 3, 2] -> [2, 1, 3]
     var distinct: [Int] { Array(Set(self)) }
-}
-
-extension ClosedRange where Element == Int {
-    /// Array(1...n) と同義
-    var toArray: [Int] { return Array<Int>(self) }
 }
 
 precedencegroup PowerPrecedence { higherThan: MultiplicationPrecedence }
