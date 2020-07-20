@@ -1,4 +1,47 @@
+/// 10
+var (n,k) = cin.pair
+/// [2, 3, 4, 5, 6, 4]
+/// [1, 2, 3, 4, 5, 3]
+let A = cin.array.map { $0-1 }
+/// []
+var seen = [Int]()
+var seenb = (0..<n).map { _ in false }
+/// 0
+var current = 0
 
+while true {
+    seen.append(current)
+    seenb[current] = true
+    current = A[current]
+    k -= 1
+
+    if k == 0 {
+        print(current+1)
+        exit(0)
+    }
+
+    if seenb[current] {
+        break
+    }
+    // .contains は O(N) なので TLEになりそう
+    // if seen.contains(current) {
+    //     break
+    // }
+}
+
+/// seen: [0, 1, 2, 3, 4, 5]
+/// current: 5
+/// loop: [4, 5, 3]
+/// k: 10 - 5 = 5
+
+let loop = Array(seen[seen.firstIndex(of: current)!..<seen.count])
+
+/// res = 5%3 = 2
+/// loop[2] = 3
+/// ans: 5 (index: 4)
+
+let ans = loop[k%loop.count]
+print(ans+1)
 
 // MARK: #### 以下、ライブラリ ####
 

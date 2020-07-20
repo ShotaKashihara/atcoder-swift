@@ -16,11 +16,9 @@ for indexies in bit全探索(n: n) {
     }
 }
 
-if v == Int.max {
-    print(-1)
-} else {
-    print(v)
-}
+print(v == Int.max ? -1 : v)
+
+// MARK: #### 以下、ライブラリ ####
 
 typealias Index = Int
 func bit全探索(n: Int) -> [[Index]] {
@@ -34,8 +32,6 @@ func bit全探索(n: Int) -> [[Index]] {
         return s
     }
 }
-
-// MARK: #### 以下、ライブラリ ####
 
 import Foundation
 #if os(Linux)
