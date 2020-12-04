@@ -1,4 +1,12 @@
+_ = cin.int
+let x = cin.array
 
+// マンハッタン距離
+print("\(x.map { abs($0) }.sum)")
+// ユークリッド距離
+print("\(sqrt(Double(x.map { $0*$0 }.sum)))")
+// チェビシェフ距離
+print("\(x.map { abs($0) }.orderByDesc.first ?? 0)")
 
 // MARK: #### 以下、ライブラリ ####
 
@@ -10,17 +18,15 @@ import Foundation
 #endif
 
 enum cin {
-    // 1
+    // 123
     static var int: Int { Int(readLine()!)! }
-    // 1 2
+    // 12 23
     static var pair: (Int, Int) { let line = readLine()!.components(separatedBy: " "); return (Int(line[0])!, Int(line[1])!) }
-    // 1 2 3
+    // 12 23 34
     static var triple: (Int, Int, Int) { let line = readLine()!.components(separatedBy: " "); return (Int(line[0])!, Int(line[1])!, Int(line[2])!) }
-    // 1 2 3 4
-    static var square: (Int, Int, Int, Int) { let line = readLine()!.components(separatedBy: " "); return (Int(line[0])!, Int(line[1])!, Int(line[2])!, Int(line[3])!) }
-    // "AtCoder"
+    // AtCoder
     static var str: String { readLine()! }
-    // "At" "Coder"
+    // At Coder
     static var arrayStr: [String] { str.components(separatedBy: " ") }
     // 1 2 3 4
     static var array: [Int] { str.components(separatedBy: " ").map { Int($0)! } }
@@ -47,6 +53,11 @@ extension Array where Element == Int {
 }
 
 extension String {
+    // e.g. cin.line.regex(match: "^(dream|dreamer|erase|eraser)*$")
+    func regex(match pattern: String) -> Bool {
+        let regex = try! NSRegularExpression(pattern: pattern)
+        return regex.firstMatch(in: self, range: NSRange(location: 0, length: self.count)) != nil
+    }
     // "ABC"[1] -> "B"
     subscript(i: Int) -> Character {
         get {

@@ -1,18 +1,12 @@
 {
-  "vint": {
-    "scope": "cpp",
-    "prefix": "vint",
-    "body": [
-      ""
-    ],
-    "description": "hogehoge"
-  },
   "DFS (複雑だけど全探索するだけ)": {
     "scope": "swift",
     "prefix": "DFS (複雑だけど全探索するだけ)",
     "body": [
       "/// よくやる再帰関数の書き方",
-      "/// https://drken1215.hatenablog.com/entry/2020/05/04/190252"
+      "/// https://drken1215.hatenablog.com/entry/2020/05/04/190252",
+      "/// 自分で書いたコード例",
+      "/// https://github.com/ShotaKashihara/atcoder-swift/blob/master/abc114/c/main.swift"
     ],
     "description": "よくやる再帰関数の書き方"
   },
@@ -128,5 +122,19 @@
       "}"
     ],
     "description": "permutation 順列"
+  },
+  "正規表現": {
+    "scope": "swift",
+    "prefix": "regex 正規表現",
+    "body": [
+      "extension String {",
+      "  // e.g. cin.line.regex(match: \"^(dream|dreamer|erase|eraser)*$\")",
+      "  func regex(match pattern: String) -> Bool {",
+      "      let regex = try! NSRegularExpression(pattern: pattern)",
+      "      return regex.firstMatch(in: self, range: NSRange(location: 0, length: self.count)) != nil",
+      "  }",
+      "}",
+    ],
+    "description": "よくやる再帰関数の書き方"
   },
 }

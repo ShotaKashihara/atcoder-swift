@@ -1,4 +1,27 @@
+let (x, y, a, b) = cin.square
 
+var m = 0
+
+/// よくやる再帰関数の書き方
+/// https://drken1215.hatenablog.com/entry/2020/05/04/190252
+
+func dfs(_ A: String, _ strength: Int) {
+    if strength >= y {
+        return
+    }
+
+    m = max(m, A.count)
+    print(m)
+
+    /// 小さくなるほうを必ず選ぶ
+
+    dfs(A + "A", strength * a)
+    dfs(A + "B", strength + b)
+}
+
+dfs("", x)
+
+print(m)
 
 // MARK: #### 以下、ライブラリ ####
 
@@ -6,7 +29,7 @@ import Foundation
 #if os(Linux)
     import Glibc
 #else
-    import Darwin.C
+    // import Darwin.C
 #endif
 
 enum cin {
