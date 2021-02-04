@@ -1,4 +1,6 @@
-
+func main() {
+}
+main()
 
 // MARK: #### 以下、ライブラリ ####
 
@@ -26,8 +28,14 @@ enum cin {
     static var array: [Int] { str.components(separatedBy: " ").map { Int($0)! } }
     // 1
     // 2
-    // 3
-    static func v_array(count: Int) -> [Int] { (0..<count).map { _ in int } }
+    static func loopMap(count: Int) -> [Int] { (0..<count).map { _ in int } }
+    // 1 2
+    // 2 3
+    // 3 4
+    /// `let array: [(a: Int, b: Int)] = cin.loopMap(count: Int)`
+    static func loopMap(count: Int) -> [(Int, Int)] { (0..<count).map { _ in cin.int2 } }
+    static func loopMap(count: Int) -> [(Int, Int, Int)] { (0..<count).map { _ in cin.int3 } }
+    static func loopMap(count: Int) -> [(Int, Int, Int, Int)] { (0..<count).map { _ in cin.int4 } }
 }
 
 extension Int {

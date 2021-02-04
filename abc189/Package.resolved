@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "AtCoderSupport",
+        "repositoryURL": "https://github.com/koher/swift-atcoder-support",
+        "state": {
+          "branch": "main",
+          "revision": "b10040845c1c5c21c83dcd47137e8f8d5904df75",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}

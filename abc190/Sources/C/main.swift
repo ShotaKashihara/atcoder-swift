@@ -1,3 +1,8 @@
+// C - Bowls and Dishes
+// https://atcoder.jp/contests/abc190/tasks/abc190_c
+func main() {
+}
+main()
 
 // MARK: #### 以下、ライブラリ ####
 
@@ -9,22 +14,30 @@ import Foundation
 #endif
 
 enum cin {
-    // 123
+    // 1
     static var int: Int { Int(readLine()!)! }
-    // 12 23
-    static var pair: (Int, Int) { let line = readLine()!.components(separatedBy: " "); return (Int(line[0])!, Int(line[1])!) }
-    // 12 23 34
-    static var triple: (Int, Int, Int) { let line = readLine()!.components(separatedBy: " "); return (Int(line[0])!, Int(line[1])!, Int(line[2])!) }
-    // AtCoder
+    // 1 2
+    static var int2: (Int, Int) { let line = readLine()!.components(separatedBy: " "); return (Int(line[0])!, Int(line[1])!) }
+    // 1 2 3
+    static var int3: (Int, Int, Int) { let line = readLine()!.components(separatedBy: " "); return (Int(line[0])!, Int(line[1])!, Int(line[2])!) }
+    // 1 2 3 4
+    static var int4: (Int, Int, Int, Int) { let line = readLine()!.components(separatedBy: " "); return (Int(line[0])!, Int(line[1])!, Int(line[2])!, Int(line[3])!) }
+    // "AtCoder"
     static var str: String { readLine()! }
-    // At Coder
+    // "At" "Coder"
     static var arrayStr: [String] { str.components(separatedBy: " ") }
     // 1 2 3 4
     static var array: [Int] { str.components(separatedBy: " ").map { Int($0)! } }
     // 1
     // 2
-    // 3
-    static func v_array(count: Int) -> [Int] { (0..<count).map { _ in int } }
+    static func loopMap(count: Int) -> [Int] { (0..<count).map { _ in int } }
+    // 1 2
+    // 2 3
+    // 3 4
+    /// `let array: [(a: Int, b: Int)] = cin.loopMap(count: Int)`
+    static func loopMap(count: Int) -> [(Int, Int)] { (0..<count).map { _ in cin.int2 } }
+    static func loopMap(count: Int) -> [(Int, Int, Int)] { (0..<count).map { _ in cin.int3 } }
+    static func loopMap(count: Int) -> [(Int, Int, Int, Int)] { (0..<count).map { _ in cin.int4 } }
 }
 
 extension Int {
@@ -44,11 +57,6 @@ extension Array where Element == Int {
 }
 
 extension String {
-    // e.g. cin.line.regex(match: "^(dream|dreamer|erase|eraser)*$")
-    func regex(match pattern: String) -> Bool {
-        let regex = try! NSRegularExpression(pattern: pattern)
-        return regex.firstMatch(in: self, range: NSRange(location: 0, length: self.count)) != nil
-    }
     // "ABC"[1] -> "B"
     subscript(i: Int) -> Character {
         get {
