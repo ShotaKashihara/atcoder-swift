@@ -1,6 +1,18 @@
 // C - Bowls and Dishes
 // https://atcoder.jp/contests/abc190/tasks/abc190_c
 func main() {
+    let (n,m) = cin.int2
+    let ab: [(a: Int, b: Int)] = cin.loopMap(count: m)
+    let k = cin.int
+    let cd: [(c: Int, d: Int)] = cin.loopMap(count: k)
+    
+    var _max = 0
+    for bits in bit全探索(n: 16) {
+        let dishs = cd.enumerated().map { bits[$0.offset] ? $0.element.c : $0.element.d }
+        let count = ab.filter { ab in dishs.contains(ab.a) && dishs.contains(ab.b) }.count
+        _max = max(count, _max)
+    }
+    print(_max)
 }
 main()
 
@@ -74,5 +86,13 @@ extension String {
         var characters = Array(self)
         characters.swapAt(index1, index2)
         self = String(characters)
+    }
+}
+
+func bit全探索(n: Int) -> [[Bool]] {
+    (0..<1<<n).map { bit in
+        (0..<n).map { i in
+            bit & 1<<i > 0
+        }
     }
 }

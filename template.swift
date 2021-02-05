@@ -74,3 +74,11 @@ extension String {
         self = String(characters)
     }
 }
+
+func bit全探索(n: Int) -> [[Bool]] {
+    (0..<1<<n).map { bit in
+        (0..<n).map { i in
+            bit & 1<<i > 0
+        }
+    }
+}
