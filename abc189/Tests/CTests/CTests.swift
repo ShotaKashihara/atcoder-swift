@@ -1,7 +1,9 @@
 import XCTest
 import TestLibrary
 
-final class CTests: XCTestCase {
+final class CTests: XCTestCase, TimeLimit {
+    let timeLimit: TimeInterval = 1.5
+
     func testExample() throws {
         let cases: [TestCase] = [
             (#filePath, #line, "6\n2 4 4 9 4 9\n", "20\n"),

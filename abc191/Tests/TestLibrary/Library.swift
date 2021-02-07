@@ -1,18 +1,30 @@
 import XCTest
 import class Foundation.Bundle
 
+public protocol TimeLimit {
+    var timeLimit: TimeInterval { get }
+}
+
 public typealias TestCase = (file: StaticString, line: UInt, input: String, expected: String)
 
-public extension XCTestCase {
+public extension TimeLimit where Self: XCTestCase {
     func solve(file: StaticString, line: UInt, input: String, expected: String) throws {
         // Some of the APIs that we use below are available in macOS 10.13 and above.
         guard #available(macOS 10.13, *) else {
             return
         }
-
+        var error = ""
+        let exp = expectation(description: "")
         let testTarget = String(describing: type(of: self)).replacingOccurrences(of: "Tests", with: "")
         let binary = productsDirectory.appendingPathComponent(testTarget)
         let process = Process()
+        
+        addTeardownBlock {
+            if process.isRunning {
+                process.terminate()
+            }
+        }
+        
         process.executableURL = binary
         let pipeInput = Pipe()
         process.standardInput = pipeInput
@@ -20,18 +32,34 @@ public extension XCTestCase {
         process.standardOutput = pipeOutput
         let pipeError = Pipe()
         process.standardError = pipeError
-        try process.run()
-        pipeInput.fileHandleForWriting.write(input.data(using: .utf8)!)
-        pipeInput.fileHandleForWriting.closeFile()
-        process.waitUntilExit()
-        let error = String(data: pipeError.fileHandleForReading.readDataToEndOfFile(), encoding: .utf8)!
-        if !error.isEmpty {
-            XCTFail(error, file: file, line: line)
-            return
+        
+        DispatchQueue.global().async {
+            do {
+                try process.run()
+                pipeInput.fileHandleForWriting.write(input.data(using: .utf8)!)
+                pipeInput.fileHandleForWriting.closeFile()
+                process.waitUntilExit()
+                exp.fulfill()
+                error = String(data: pipeError.fileHandleForReading.readDataToEndOfFile(), encoding: .utf8)!
+            } catch (let e) {
+                error = e.localizedDescription
+            }
         }
-        let data = pipeOutput.fileHandleForReading.readDataToEndOfFile()
-        let output = String(data: data, encoding: .utf8)!
-        XCTAssertEqual(output, expected, file: file, line: line)
+        let result = XCTWaiter.wait(for: [exp], timeout: timeLimit)
+        switch result {
+        case .completed:
+            if error.isEmpty {
+                let data = pipeOutput.fileHandleForReading.readDataToEndOfFile()
+                let output = String(data: data, encoding: .utf8)!
+                XCTAssertEqual(output, expected, file: file, line: line)
+            } else {
+                XCTFail("RE: \(error)", file: file, line: line)
+            }
+        case .timedOut:
+            XCTFail("TLE: Exceeded timeout of \(timeLimit) seconds", file: file, line: line)
+        default:
+            XCTFail("Unrecognized error.", file: file, line: line)
+        }
     }
 
     private var productsDirectory: URL {

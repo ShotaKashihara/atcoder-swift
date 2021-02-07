@@ -1,7 +1,9 @@
 import XCTest
 import TestLibrary
 
-final class DTests: XCTestCase {
+final class DTests: XCTestCase, TimeLimit {
+    let timeLimit: TimeInterval = 2.0
+
     func testExample() throws {
         let cases: [TestCase] = [
             (#filePath, #line, "2\nAND\nOR\n", "5\n"),
