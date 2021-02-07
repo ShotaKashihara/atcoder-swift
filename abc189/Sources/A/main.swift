@@ -1,23 +1,20 @@
 // A - Slot
 // https://atcoder.jp/contests/abc189/tasks/abc189_a
+import Foundation
 
-public func hoge() {
-    print("hoge")
+func main() {
+    let s = cin.str
+    print(s[0] == s[1] && s[2] == s[1] ? "Won" : "Lost")
 }
-
-let a = cin.str
-print(a[0] == a[1] && a[1] == a[2] ? "Won" : "Lost")
-
-
-
+main()
 
 // MARK: #### 以下、ライブラリ ####
 
 import Foundation
 #if os(Linux)
-    import Glibc
+import Glibc
 #else
-    import Darwin.C
+import Darwin.C
 #endif
 
 enum cin {
@@ -37,8 +34,14 @@ enum cin {
     static var array: [Int] { str.components(separatedBy: " ").map { Int($0)! } }
     // 1
     // 2
-    // 3
-    static func v_array(count: Int) -> [Int] { (0..<count).map { _ in int } }
+    static func loopMap(count: Int) -> [Int] { (0..<count).map { _ in int } }
+    // 1 2
+    // 2 3
+    // 3 4
+    /// `let array: [(a: Int, b: Int)] = cin.loopMap(count: Int)`
+    static func loopMap(count: Int) -> [(Int, Int)] { (0..<count).map { _ in cin.int2 } }
+    static func loopMap(count: Int) -> [(Int, Int, Int)] { (0..<count).map { _ in cin.int3 } }
+    static func loopMap(count: Int) -> [(Int, Int, Int, Int)] { (0..<count).map { _ in cin.int4 } }
 }
 
 extension Int {
@@ -75,6 +78,14 @@ extension String {
         var characters = Array(self)
         characters.swapAt(index1, index2)
         self = String(characters)
+    }
+}
+
+func bit全探索(n: Int) -> [[Bool]] {
+    (0..<1<<n).map { bit in
+        (0..<n).map { i in
+            bit & 1<<i > 0
+        }
     }
 }
 
