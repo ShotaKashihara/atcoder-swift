@@ -13,7 +13,7 @@ import Foundation
 #if os(Linux)
 import Glibc
 #else
-import Darwin.C
+//import Darwin.C
 #endif
 
 enum cin {
