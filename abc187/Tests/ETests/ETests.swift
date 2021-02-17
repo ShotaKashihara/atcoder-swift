@@ -1,12 +1,90 @@
 import XCTest
 import TestLibrary
 
-final class ETests: XCTestCase {
+final class ETests: XCTestCase, TimeLimit {
+    let timeLimit: TimeInterval = 2.0
+
     func testExample() throws {
         let cases: [TestCase] = [
-            (#filePath, #line, "5\n1 2\n2 3\n2 4\n4 5\n4\n1 1 1\n1 4 10\n2 1 100\n2 2 1000\n", "11\n110\n1110\n110\n100\n"),
-            (#filePath, #line, "7\n2 1\n2 3\n4 2\n4 5\n6 1\n3 7\n7\n2 2 1\n1 3 2\n2 2 4\n1 6 8\n1 3 16\n2 4 32\n2 1 64\n", "72\n8\n13\n26\n58\n72\n5\n"),
-            (#filePath, #line, "11\n2 1\n1 3\n3 4\n5 2\n1 6\n1 7\n5 8\n3 9\n3 10\n11 4\n10\n2 6 688\n1 10 856\n1 8 680\n1 8 182\n2 2 452\n2 4 183\n2 6 518\n1 3 612\n2 6 339\n2 3 206\n", "1657\n1657\n2109\n1703\n1474\n1657\n3202\n1474\n1247\n2109\n2559\n"),
+            (#filePath, #line, """
+                5
+                1 2
+                2 3
+                2 4
+                4 5
+                4
+                1 1 1
+                1 4 10
+                2 1 100
+                2 2 1000
+                """, """
+                11
+                110
+                1110
+                110
+                100
+                """),
+            (#filePath, #line, """
+                7
+                2 1
+                2 3
+                4 2
+                4 5
+                6 1
+                3 7
+                7
+                2 2 1
+                1 3 2
+                2 2 4
+                1 6 8
+                1 3 16
+                2 4 32
+                2 1 64
+                """, """
+                72
+                8
+                13
+                26
+                58
+                72
+                5
+                """),
+            (#filePath, #line, """
+                11
+                2 1
+                1 3
+                3 4
+                5 2
+                1 6
+                1 7
+                5 8
+                3 9
+                3 10
+                11 4
+                10
+                2 6 688
+                1 10 856
+                1 8 680
+                1 8 182
+                2 2 452
+                2 4 183
+                2 6 518
+                1 3 612
+                2 6 339
+                2 3 206
+                """, """
+                1657
+                1657
+                2109
+                1703
+                1474
+                1657
+                3202
+                1474
+                1247
+                2109
+                2559
+                """),
         ]
         try cases.forEach(solve)
     }

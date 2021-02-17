@@ -1,12 +1,40 @@
 import XCTest
 import TestLibrary
 
-final class BTests: XCTestCase {
+final class BTests: XCTestCase, TimeLimit {
+    let timeLimit: TimeInterval = 2.0
+
     func testExample() throws {
         let cases: [TestCase] = [
-            (#filePath, #line, "3\n0 0\n1 2\n2 1\n", "2\n"),
-            (#filePath, #line, "1\n-691 273\n", "0\n"),
-            (#filePath, #line, "10\n-31 -35\n8 -36\n22 64\n5 73\n-14 8\n18 -58\n-41 -85\n1 -88\n-21 -85\n-11 82\n", "11\n"),
+            (#filePath, #line, """
+                3
+                0 0
+                1 2
+                2 1
+                """, """
+                2
+                """),
+            (#filePath, #line, """
+                1
+                -691 273
+                """, """
+                0
+                """),
+            (#filePath, #line, """
+                10
+                -31 -35
+                8 -36
+                22 64
+                5 73
+                -14 8
+                18 -58
+                -41 -85
+                1 -88
+                -21 -85
+                -11 82
+                """, """
+                11
+                """),
         ]
         try cases.forEach(solve)
     }

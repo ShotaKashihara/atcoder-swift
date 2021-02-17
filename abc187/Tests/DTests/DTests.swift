@@ -1,12 +1,36 @@
 import XCTest
 import TestLibrary
 
-final class DTests: XCTestCase {
+final class DTests: XCTestCase, TimeLimit {
+    let timeLimit: TimeInterval = 2.0
+
     func testExample() throws {
         let cases: [TestCase] = [
-            (#filePath, #line, "4\n2 1\n2 2\n5 1\n1 3\n", "1\n"),
-            (#filePath, #line, "5\n2 1\n2 1\n2 1\n2 1\n2 1\n", "3\n"),
-            (#filePath, #line, "1\n273 691\n", "1\n"),
+            (#filePath, #line, """
+                4
+                2 1
+                2 2
+                5 1
+                1 3
+                """, """
+                1
+                """),
+            (#filePath, #line, """
+                5
+                2 1
+                2 1
+                2 1
+                2 1
+                2 1
+                """, """
+                3
+                """),
+            (#filePath, #line, """
+                1
+                273 691
+                """, """
+                1
+                """),
         ]
         try cases.forEach(solve)
     }

@@ -1,11 +1,37 @@
 import XCTest
 import TestLibrary
 
-final class CTests: XCTestCase {
+final class CTests: XCTestCase, TimeLimit {
+    let timeLimit: TimeInterval = 2.0
+
     func testExample() throws {
         let cases: [TestCase] = [
-            (#filePath, #line, "6\na\n!a\nb\n!c\nd\n!d\n", "a\n"),
-            (#filePath, #line, "10\nred\nred\nred\n!orange\nyellow\n!blue\ncyan\n!green\nbrown\n!gray\n", "satisfiable\n"),
+            (#filePath, #line, """
+                6
+                a
+                !a
+                b
+                !c
+                d
+                !d
+                """, """
+                a
+                """),
+            (#filePath, #line, """
+                10
+                red
+                red
+                red
+                !orange
+                yellow
+                !blue
+                cyan
+                !green
+                brown
+                !gray
+                """, """
+                satisfiable
+                """),
         ]
         try cases.forEach(solve)
     }
