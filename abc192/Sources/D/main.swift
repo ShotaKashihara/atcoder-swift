@@ -54,7 +54,7 @@ if X.count == 1 {
     exit(0)
 }
 
-let ans = binarySearch(ok: d+1, ng: Int.max) { n -> Bool in
+let ans = binarySearch(ok: d, ng: Int.max) { n -> Bool in
     // X を n 進法表記で見て10進法に変換
     if let value = Int(X, radix: n) {
         return value <= M
