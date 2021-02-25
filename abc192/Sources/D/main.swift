@@ -53,7 +53,7 @@ extension Int {
     /// https://atcoder.jp/contests/abc192/tasks/abc192_d
     init?(_ string: String, radix: Int) {
         var result = 0
-        for x in string.map(\.wholeNumberValue!) {
+        for x in string.map(\.hexDigitValue!) {
             let (d1, e1) = result.multipliedReportingOverflow(by: radix)
             if e1 {
                 return nil
