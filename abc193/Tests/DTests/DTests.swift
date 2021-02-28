@@ -7,29 +7,32 @@ final class DTests: XCTestCase, TimeLimit {
     func testExample() throws {
         let cases: [TestCase] = [
             (#filePath, #line, """
-                5 2
-                1 3
+                2
+                1144#
+                2233#
                 """, """
-                3
+                0.4444444444444444
                 """),
             (#filePath, #line, """
-                13 3
-                13 3 9
+                2
+                9988#
+                1122#
                 """, """
+                1.0
+                """),
+            (#filePath, #line, """
                 6
+                1122#
+                2228#
+                """, """
+                0.001932367149758454
                 """),
             (#filePath, #line, """
-                5 5
-                5 2 1 4 3
+                100000
+                3226#
+                3597#
                 """, """
-                0
-                """),
-            (#filePath, #line, """
-                1 0
-                
-
-                """, """
-                1
+                0.6296297942426154
                 """),
         ]
         try cases.forEach(solve)

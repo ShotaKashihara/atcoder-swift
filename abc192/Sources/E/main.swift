@@ -65,10 +65,10 @@ func dijkstra(start: Int, vertexCount: Int, edges: [[Edge]]) -> [Int] {
     distance[start] = 0
     
     while let state = heap.extractMin() {
+        guard state.distance <= distance[state.vertex] else {
+            continue // 他の最短経路が見つかった
+        }
         for edge in edges[state.vertex] {
-            if distance[state.vertex] < state.distance {
-                continue
-            }
             ///
             /// 重みの加算
             ///

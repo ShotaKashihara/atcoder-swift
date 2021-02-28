@@ -1,35 +1,25 @@
 import XCTest
 import TestLibrary
 
-final class DTests: XCTestCase, TimeLimit {
+final class ATests: XCTestCase, TimeLimit {
     let timeLimit: TimeInterval = 2.0
 
     func testExample() throws {
         let cases: [TestCase] = [
             (#filePath, #line, """
-                5 2
-                1 3
+                100 80
                 """, """
-                3
+                20.0
                 """),
             (#filePath, #line, """
-                13 3
-                13 3 9
+                7 6
                 """, """
-                6
+                14.285714285714285714
                 """),
             (#filePath, #line, """
-                5 5
-                5 2 1 4 3
+                99999 99998
                 """, """
-                0
-                """),
-            (#filePath, #line, """
-                1 0
-                
-
-                """, """
-                1
+                0.00100001000010000100
                 """),
         ]
         try cases.forEach(solve)

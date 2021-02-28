@@ -3,16 +3,36 @@
 import Foundation
 let L = Int(readLine()!)!
 
-// L = 12
-// 11 / 11
+func ncr<Integer>(_ n: Integer, _ r: Integer, modulus: Integer?) -> Integer where Integer: BinaryInteger, Integer.Stride: SignedInteger {
+    precondition(n >= 0)
+    precondition(r >= 0)
+    precondition(n >= r)
+    if let modulus = modulus {
+        precondition(modulus >= 1)
+        func npr(_ n: Integer, _ r: Integer, modulus: Integer) -> Integer {
+            (n - r + 1 ..< n + 1).reduce(into: 1) { $0 = ($0 * $1) % modulus }
+        }
+        func pow(_ a: Integer, _ b: Integer, modulus: Integer) -> Integer {
+            var result: Integer = .init(1)
+            var a = a
+            var b = b
+            while true {
+                if b & 0x1 != .zero {
+                    result = (result * a) % modulus
+                }
+                b >>= 1
+                guard b > .zero else { break }
+                a = (a * a) % modulus
+            }
+            return result
+        }
+        let numerator = npr(n, r, modulus: modulus)
+        let denominator = npr(r, r, modulus: modulus)
+        return (numerator * pow(denominator, modulus - 2, modulus: modulus)) % modulus
+    } else {
+        let range: Range<Integer> = 1 ..< r + 1
+        return range.reduce(into: 1 as Integer) { $0 = $0 * (n - $1 + 1) / $1 }
+    }
+}
 
-// L = 13
-// 12*11 / 11*10
-
-// 11C11
-
-// 11*10*9*8*...2*1
-// ----------------
-// 1*2*3.......10*11
-
-//print(ncr(L-1, 11, modulus: nil))
+print(ncr(L-1, 11, modulus: nil))
