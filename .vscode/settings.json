@@ -1,3 +1,14 @@
 {
   "lldb.library": "/Applications/Xcode.app/Contents/SharedFrameworks/LLDB.framework/Versions/A/LLDB",
+  "leetcode.defaultLanguage": "swift",
+  "leetcode.filePath": {
+      "default": {
+          "folder": "solutions",
+          "filename": "${id}.${kebab-case-name}.${ext}"
+      }
+  },
+  "leetcode.workspaceFolder": "/Users/shota/git/github.com/ShotaKashihara/leetcode-swift",
+  "leetcode.hint.configWebviewMarkdown": false,
+  "leetcode.showDescription": "Both",
+  "leetcode.hint.commandShortcut": false
 }
