@@ -31,7 +31,7 @@ final class ETests: XCTestCase, TimeLimit {
                 2
                 """),
             (#filePath, #line, """
-                5 5
+                6 5
                 0 1 2 3 4 5
                 """, """
                 0
