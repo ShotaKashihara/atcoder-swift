@@ -4,25 +4,8 @@ import Foundation
 
 let N = Int(readLine()!)!
 
-//var ans = 1.0
-//for i in 1..<N {
-//    ans *= Double(N)
-//    ans /= Double(i)
-//}
-//print(ans)
-
-//var ans = NSDecimalNumber.init(string: "1.0")
-//for i in 1..<N {
-//    ans = ans.multiplying(by: .init(value: N))
-//    ans = ans.dividing(by: .init(value: i))
-//}
-//print(ans)
-
-let modulus: UInt = 998244353
-
-var ans = 1.0
+var ans = 0.0
 for i in 1..<N {
-    ans += Double(N)
-    ans /= Double(i)
+    ans += Double(N) / Double(N - i)
 }
 print(ans)
