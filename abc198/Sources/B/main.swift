@@ -8,13 +8,10 @@ while N.hasSuffix("0") {
     N = String(N.dropLast())
 }
 
-while N.count > 1 {
-    if N.last == N.first {
-        N = String(N.dropLast())
-        N = String(N.dropFirst())
-    } else {
-        print("No")
-        exit(0)
+extension String {
+    var isPalindrome: Bool {
+        return self == String(self.reversed())
     }
 }
-print("Yes")
+
+print(N.isPalindrome ? "Yes" : "No")

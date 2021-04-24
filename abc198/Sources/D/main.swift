@@ -2,14 +2,14 @@
 // https://atcoder.jp/contests/abc198/tasks/abc198_d
 // 実行制限時間: 5.0 sec
 import Foundation
-
+/// `(0...10).permutations`
 struct PermutationSequence<Element: Comparable>: Sequence {
     private let elements: [Element]
- 
+    
     struct Iterator: IteratorProtocol {
         var elements: [Element]
         var finished = false
- 
+        
         mutating func next() -> [Element]? {
             guard !finished else { return nil }
             let result = elements
@@ -30,16 +30,16 @@ struct PermutationSequence<Element: Comparable>: Sequence {
             return result
         }
     }
-
+    
     init<Elements: Sequence>(elements: Elements) where Elements.Element == Element {
         self.elements = Array(elements)
     }
- 
+    
     func makeIterator() -> Iterator {
         return Iterator(elements: elements)
     }
 }
- 
+
 extension Sequence where Element: Comparable {
     var permutations: PermutationSequence<Element> {
         PermutationSequence(elements: self)
@@ -51,30 +51,36 @@ let S1 = readLine()!
 let S2 = readLine()!
 let S3 = readLine()!
 
-// "abc"
-let allChars = Array(Set(S1 + S2 + S3))
+// 使われる文字を列挙する
+let set = Array(Set(S1 + S2 + S3))
 
-if allChars.count > 10 {
+// ここで 11 文字以上なら UNSOLVABLE
+if set.count > 10 {
     print("UNSOLVABLE")
     exit(0)
 }
 
-// "abc" -> "012"
-let s1 = S1.map { allChars.firstIndex(of: $0)! }
-let s2 = S2.map { allChars.firstIndex(of: $0)! }
-let s3 = S3.map { allChars.firstIndex(of: $0)! }
-for arr in (0 ..< 10).permutations {
-    if arr[s1.first!] == 0 || arr[s2.first!] == 0 || arr[s3.first!] == 0 {
+// 使われる文字にそれぞれ 0~9 なる数値をつけ、文字列をindex数字列に変換しておく
+
+let T1 = S1.map { set.firstIndex(of: $0)! }
+let T2 = S2.map { set.firstIndex(of: $0)! }
+let T3 = S3.map { set.firstIndex(of: $0)! }
+
+// [0-9].next_permutations で全列挙する
+for p in (0...9).permutations {
+    // 先頭が 0 なら無視
+    if p[T1.first!] == 0 || p[T2.first!] == 0 || p[T3.first!] == 0 {
         continue
     }
-    let t1 = s1.map { arr[$0] }.reduce(0) { x, y in x * 10 + y }
-    let t2 = s2.map { arr[$0] }.reduce(0) { x, y in x * 10 + y }
-    let t3 = s3.map { arr[$0] }.reduce(0) { x, y in x * 10 + y }
     
-    if t1 + t2 == t3 {
-        print(t1)
-        print(t2)
-        print(t3)
+    // 数字列を実際の整数に変換する
+    let N1 = T1.map { p[$0] }.reduce(0) { x,y in x*10+y }
+    let N2 = T2.map { p[$0] }.reduce(0) { x,y in x*10+y }
+    let N3 = T3.map { p[$0] }.reduce(0) { x,y in x*10+y }
+    if N1 + N2 == N3 {
+        print(N1)
+        print(N2)
+        print(N3)
         exit(0)
     }
 }
