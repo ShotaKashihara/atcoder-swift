@@ -1,13 +1,63 @@
 // E - Train
 // https://atcoder.jp/contests/abc192/tasks/abc192_e
 import Foundation
+typealias Graph = [Vertex]
+typealias Vertex = [Edge]
+struct Edge {
+    let next, weight, time: Int
+}
+
+struct Dijkstra {
+    /// 計算中の頂点の状態
+    struct VertexState: Comparable {
+        /// 頂点の index
+        let vertex: Int
+        /// 始点からの距離
+        let distance: Int
+        
+        static func < (lhs: Self, rhs: Self) -> Bool {
+            lhs.distance < rhs.distance
+        }
+    }
+    typealias Distance = Int
+    static func solve(graph: Graph, start: Int, end: Int) -> Distance {
+        /// 通った頂点の始点からの距離
+        /// 初期値は始点(0) とその他 (INF) で埋める
+        var distance = [Int](repeating: Int.max, count: graph.count)
+        distance[start] = .zero
+        /// 使用済みでない頂点集合
+        /// 初期値は始点(0)のみ
+        /// このヒープがゼロ個になるまで `heap.pop()` を回す
+        var heap = BinaryHeap<VertexState>()
+        heap.insert(.init(vertex: start, distance: .zero))
+        
+        while let state = heap.pop() {
+            guard state.distance <= distance[state.vertex] else {
+                continue // この経路は最短距離を更新できないゴミ
+            }
+            for edge in graph[state.vertex] {
+                /// 現在の距離に `Edge.weight` (重み)を加算して、次の頂点への最短距離が更新されるか確認
+//                let newDistance = state.distance + edge.weight
+                let newDistance = state.distance + edge.weight
+                    + (edge.time - state.distance % edge.time) % edge.time
+                if distance[edge.next] > newDistance {
+                    distance[edge.next] = newDistance
+                    heap.insert(.init(vertex: edge.next, distance: newDistance))
+                }
+            }
+        }
+        
+        return distance[end]
+    }
+}
+
+infix operator /+: MultiplicationPrecedence // 切り上げ
+func /+ (lhs: Int, rhs: Int) -> Int {
+    lhs >= 0 ? (lhs + rhs - 1) / rhs : lhs / rhs
+}
 
 struct BinaryHeap<Value: Comparable> {
-    var heap: [Value]
-    
-    init() {
-        self.heap = []
-    }
+    var heap = [Value]()
     
     mutating func insert(_ v: Value) {
         var k = heap.count
@@ -23,7 +73,7 @@ struct BinaryHeap<Value: Comparable> {
         }
     }
     
-    mutating func extractMin() -> Value? {
+    mutating func pop() -> Value? {
         guard let result = heap.first else { return nil }
         heap.swapAt(0, heap.endIndex - 1)
         heap.removeLast()
@@ -43,62 +93,21 @@ struct BinaryHeap<Value: Comparable> {
     }
 }
 
-struct State: Comparable {
-    let vertex: Int // ちょうてん
-    let distance: Int // きょり
-    
-    static func < (lhs: State, rhs: State) -> Bool {
-        lhs.distance < rhs.distance
-    }
-}
+let (vertexCount, edgeCount, start, end): (Int, Int, Int, Int) = { let l = readLine()!.split(separator: " ").map(String.init); return (Int(l[0])!, Int(l[1])!, Int(l[2])!, Int(l[3])!) }()
 
-struct Edge {
-    let next: Int // 向き先
-    let weight: Int // 重み
-    let K: Int
-}
-
-func dijkstra(start: Int, vertexCount: Int, edges: [[Edge]]) -> [Int] {
-    var heap = BinaryHeap<State>()
-    heap.insert(.init(vertex: start, distance: 0))
-    var distance = [Int].init(repeating: Int.max, count: vertexCount)
-    distance[start] = 0
-    
-    while let state = heap.extractMin() {
-        guard state.distance <= distance[state.vertex] else {
-            continue // 他の最短経路が見つかった
-        }
-        for edge in edges[state.vertex] {
-            ///
-            /// 重みの加算
-            ///
-//            let newDistance = state.distance + edge.weight
-            let newDistance = state.distance /+ edge.K * edge.K + edge.weight
-            if distance[edge.next] > newDistance {
-                distance[edge.next] = newDistance
-                heap.insert(.init(vertex: edge.next, distance: newDistance))
-            }
-        }
-    }
-    
-    return distance
-}
-
-infix operator /+: MultiplicationPrecedence // 切り上げ
-func /+ (lhs: Int, rhs: Int) -> Int {
-    lhs >= 0 ? (lhs + rhs - 1) / rhs : lhs / rhs
-}
-
-let (N, M, X, Y): (Int, Int, Int, Int) = { let l = readLine()!.split(separator: " ").map(String.init); return (Int(l[0])!, Int(l[1])!, Int(l[2])! - 1, Int(l[3])! - 1) }()
-let vertexCount = N
-let edgeCount = M
-var G: [[Edge]] = .init(repeating: [], count: vertexCount)
+/// 「頂点A から 頂点B までに重さW がかかる辺が M 個与えられる」という場合に `Graph` を構築する例
+var graph = Graph(repeating: [], count: vertexCount)
 (0..<edgeCount).forEach { _ in
     let (A, B, T, K): (Int, Int, Int, Int) = { let l = readLine()!.split(separator: " ").map(String.init); return (Int(l[0])!, Int(l[1])!, Int(l[2])!, Int(l[3])!) }()
     
-    G[A-1].append(.init(next: B-1, weight: T, K: K))
-    G[B-1].append(.init(next: A-1, weight: T, K: K))
+    graph[A-1].append(.init(next: B-1, weight: T, time: K))
+    // 無向グラフは両方の頂点に辺を追加
+    graph[B-1].append(.init(next: A-1, weight: T, time: K))
 }
 
-let distance = dijkstra(start: X, vertexCount: vertexCount, edges: G)
-print(distance[Y] == Int.max ? -1 : distance[Y])
+let distance = Dijkstra.solve(
+    graph: graph,
+    start: start - 1,
+    end: end - 1
+)
+print(distance == Int.max ? -1 : distance)
