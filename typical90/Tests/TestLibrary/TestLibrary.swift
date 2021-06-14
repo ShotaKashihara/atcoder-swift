@@ -16,7 +16,9 @@ public extension TimeLimit where Self: XCTestCase {
         let expected = expected.last == "\n" ? expected : expected + "\n"
         var error = ""
         let exp = expectation(description: "")
-        let testTarget = String(describing: type(of: self)).replacingOccurrences(of: "Tests", with: "")
+        let testTarget = String(describing: type(of: self))
+            .replacingOccurrences(of: "Tests", with: "")
+            .replacingOccurrences(of: "_", with: "")
         let binary = productsDirectory.appendingPathComponent(testTarget)
         let process = Process()
         

@@ -1,7 +1,7 @@
 import XCTest
 import TestLibrary
 
-final class 022Tests: XCTestCase, TimeLimit {
+final class _022Tests: XCTestCase, TimeLimit {
     let timeLimit: TimeInterval = 2.0
 
     func testExample() throws {

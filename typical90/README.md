@@ -25,3 +25,42 @@
 [021 Come Back in One Piece（★5）](https://atcoder.jp/contests/typical90/tasks/typical90_u) | 2.0 sec | 1024 MB
 [022 Cubic Cake（★2）](https://atcoder.jp/contests/typical90/tasks/typical90_v) | 2.0 sec | 1024 MB
 [023 Avoid War（★7）](https://atcoder.jp/contests/typical90/tasks/typical90_w) | 8.0 sec | 2048 MB
+[024 Select +／- One（★2）](https://atcoder.jp/contests/typical90/tasks/typical90_x) | 2.0 sec | 1024 MB
+[025 Digit Product Equation（★7）](https://atcoder.jp/contests/typical90/tasks/typical90_y) | 2.0 sec | 1024 MB
+[026 Independent Set on a Tree（★4）](https://atcoder.jp/contests/typical90/tasks/typical90_z) | 2.0 sec | 1024 MB
+[027 Sign Up Requests （★2）](https://atcoder.jp/contests/typical90/tasks/typical90_aa) | 1.0 sec | 1024 MB
+[028 Cluttered Paper（★4）](https://atcoder.jp/contests/typical90/tasks/typical90_ab) | 2.0 sec | 1024 MB
+[029 Long Bricks（★5）](https://atcoder.jp/contests/typical90/tasks/typical90_ac) | 4.0 sec | 1024 MB
+[030 K Factors（★5）](https://atcoder.jp/contests/typical90/tasks/typical90_ad) | 2.0 sec | 1024 MB
+[031 VS AtCoder（★6）](https://atcoder.jp/contests/typical90/tasks/typical90_ae) | 3.0 sec | 1024 MB
+[032 AtCoder Ekiden（★3）](https://atcoder.jp/contests/typical90/tasks/typical90_af) | 5.0 sec | 1024 MB
+[033 Not Too Bright（★2）](https://atcoder.jp/contests/typical90/tasks/typical90_ag) | 1.0 sec | 1024 MB
+[034 There are few types of elements（★4）](https://atcoder.jp/contests/typical90/tasks/typical90_ah) | 2.0 sec | 1024 MB
+[035 Preserve Connectivity（★7）](https://atcoder.jp/contests/typical90/tasks/typical90_ai) | 2.0 sec | 1024 MB
+[036 Max Manhattan Distance（★5）](https://atcoder.jp/contests/typical90/tasks/typical90_aj) | 2.0 sec | 1024 MB
+[037 Don't Leave the Spice（★5）](https://atcoder.jp/contests/typical90/tasks/typical90_ak) | 2.0 sec | 1024 MB
+[038 Large LCM（★3）](https://atcoder.jp/contests/typical90/tasks/typical90_al) | 2.0 sec | 1024 MB
+[039 Tree Distance（★5）](https://atcoder.jp/contests/typical90/tasks/typical90_am) | 2.0 sec | 1024 MB
+[040 Get More Money（★7）](https://atcoder.jp/contests/typical90/tasks/typical90_an) | 2.0 sec | 1024 MB
+[041 Piles in AtCoder Farm（★7）](https://atcoder.jp/contests/typical90/tasks/typical90_ao) | 2.0 sec | 1024 MB
+[042 Multiple of 9（★4）](https://atcoder.jp/contests/typical90/tasks/typical90_ap) | 2.0 sec | 1024 MB
+[043 Maze Challenge with Lack of Sleep（★4）](https://atcoder.jp/contests/typical90/tasks/typical90_aq) | 2.0 sec | 1024 MB
+[044 Shift and Swapping（★3）](https://atcoder.jp/contests/typical90/tasks/typical90_ar) | 2.0 sec | 1024 MB
+[045 Simple Grouping（★6）](https://atcoder.jp/contests/typical90/tasks/typical90_as) | 2.0 sec | 1024 MB
+[046 I Love 46（★3）](https://atcoder.jp/contests/typical90/tasks/typical90_at) | 2.0 sec | 1024 MB
+[047 Monochromatic Diagonal（★7）](https://atcoder.jp/contests/typical90/tasks/typical90_au) | 2.0 sec | 1024 MB
+[048 I will not drop out（★3）](https://atcoder.jp/contests/typical90/tasks/typical90_av) | 2.0 sec | 1024 MB
+[049 Flip Digits 2（★6）](https://atcoder.jp/contests/typical90/tasks/typical90_aw) | 2.0 sec | 1024 MB
+[050 Stair Jump（★3）](https://atcoder.jp/contests/typical90/tasks/typical90_ax) | 2.0 sec | 1024 MB
+[051 Typical Shop（★5）](https://atcoder.jp/contests/typical90/tasks/typical90_ay) | 3.0 sec | 1024 MB
+[052 Dice Product（★3）](https://atcoder.jp/contests/typical90/tasks/typical90_az) | 2.0 sec | 1024 MB
+[053 Discrete Dowsing（★7）](https://atcoder.jp/contests/typical90/tasks/typical90_ba) | 2.0 sec | 1024 MB
+[054 Takahashi Number（★6）](https://atcoder.jp/contests/typical90/tasks/typical90_bb) | 2.0 sec | 1024 MB
+[055 Select 5（★2）](https://atcoder.jp/contests/typical90/tasks/typical90_bc) | 5.0 sec | 1024 MB
+[056 Lucky Bag（★5）](https://atcoder.jp/contests/typical90/tasks/typical90_bd) | 2.0 sec | 1024 MB
+[057 Flip Flap（★6）](https://atcoder.jp/contests/typical90/tasks/typical90_be) | 2.0 sec | 1024 MB
+[058 Original Calculator（★4）](https://atcoder.jp/contests/typical90/tasks/typical90_bf) | 2.0 sec | 1024 MB
+[059 Many Graph Queries（★7）](https://atcoder.jp/contests/typical90/tasks/typical90_bg) | 3.0 sec | 1024 MB
+[060 Chimera（★5）](https://atcoder.jp/contests/typical90/tasks/typical90_bh) | 2.0 sec | 1024 MB
+[061 Deck（★2）](https://atcoder.jp/contests/typical90/tasks/typical90_bi) | 2.0 sec | 1024 MB
+[062 Paint All（★6）](https://atcoder.jp/contests/typical90/tasks/typical90_bj) | 2.0 sec | 1024 MB
