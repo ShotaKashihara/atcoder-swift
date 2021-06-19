@@ -1,4 +1,10 @@
-// E - White and Black Balls
-// https://atcoder.jp/contests/abc205/tasks/abc205_e
-// 実行制限時間: 2.0 sec
 import Foundation
+
+let N = Int(readLine()!)!
+var A = readLine()!.split(separator: " ").map(String.init).map { Int($0)! }
+var B = readLine()!.split(separator: " ").map(String.init).map { Int($0)! }
+A.sort()
+B.sort()
+
+let diff = zip(A, B).map { abs($0 - $1) }.reduce(0, +)
+print(diff)
