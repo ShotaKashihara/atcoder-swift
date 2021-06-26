@@ -4,26 +4,59 @@ import TestLibrary
 let cases: [TestCase] = [
 (#filePath, #line,
 """
-180
+3
+1 3
+1 2
 """, """
-Yay!
+1
+0
+2
+5
 """),
 (#filePath, #line,
 """
-200
+5
+1 3
+4 5
+1 5
+2 3
 """, """
-:(
+1
+0
+2
+5
+7
+17
 """),
 (#filePath, #line,
 """
-191
+10
+6 10
+1 8
+2 7
+5 6
+3 8
+3 4
+7 10
+4 9
+2 8
 """, """
-so-so
+1
+0
+3
+8
+15
+32
+68
+110
+196
+266
+325
 """),
 ]
 
-final class ATests: XCTestCase, TimeLimit {
-    let timeLimit: TimeInterval = 2.0
+final class FTests: XCTestCase, TimeLimit {
+    let timeLimit: TimeInterval = 3.0
 
     func testExample() throws {
         try cases.forEach(solve)

@@ -4,25 +4,19 @@ import TestLibrary
 let cases: [TestCase] = [
 (#filePath, #line,
 """
-180
+5 2 3 2
 """, """
-Yay!
+2
 """),
 (#filePath, #line,
 """
-200
+6 9 2 3
 """, """
-:(
-"""),
-(#filePath, #line,
-"""
-191
-""", """
-so-so
+-1
 """),
 ]
 
-final class ATests: XCTestCase, TimeLimit {
+final class BTests: XCTestCase, TimeLimit {
     let timeLimit: TimeInterval = 2.0
 
     func testExample() throws {

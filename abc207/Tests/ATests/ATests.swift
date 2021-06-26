@@ -4,21 +4,21 @@ import TestLibrary
 let cases: [TestCase] = [
 (#filePath, #line,
 """
-180
+3 4 5
 """, """
-Yay!
+9
 """),
 (#filePath, #line,
 """
-200
+6 6 6
 """, """
-:(
+12
 """),
 (#filePath, #line,
 """
-191
+99 99 98
 """, """
-so-so
+198
 """),
 ]
 

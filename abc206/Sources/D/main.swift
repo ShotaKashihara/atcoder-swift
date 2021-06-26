@@ -3,20 +3,6 @@
 // 実行制限時間: 2.0 sec
 import Foundation
 
-let N = Int(readLine()!)!
-let A = readLine()!.split(separator: " ").map(String.init).map { Int($0)! }
-
-extension Array where Element == Int {
-    var isPalindrome: Bool {
-        return self == Array(self.reversed())
-    }
-}
-
-if A.isPalindrome {
-    print(0)
-    exit(0)
-}
-
 struct UnionFind<Element> where Element: Hashable {
     typealias Element = Element
 
@@ -86,12 +72,18 @@ struct UnionFind<Element> where Element: Hashable {
     }
 }
 
+let N = Int(readLine()!)!
+let A = readLine()!.split(separator: " ").map(String.init).map { Int($0)! }
 var uf = UnionFind<Int>()
 var count = 0
-for i in 0 ..< A.count/2 {
-    if uf.find(A[i]) != uf.find(A[A.endIndex - i - 1]) {
-        uf.unite(A[i], A[A.endIndex - i - 1])
+for i in 0..<N/2 {
+    let left = A[i]
+    let right = A[N - i - 1]
+    if uf.find(left) != uf.find(right) {
+        uf.unite(left, right)
         count += 1
     }
 }
-print(count)
+for i in 1...N {
+    print(uf.count(i))
+}
