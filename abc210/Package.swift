@@ -11,7 +11,7 @@ let package = Package(
         .testTarget(name: "BTests", dependencies: ["B", "TestLibrary"]),
         .target(name: "C", swiftSettings: [.unsafeFlags(["-Ounchecked"])]),
         .testTarget(name: "CTests", dependencies: ["C", "TestLibrary"]),
-        .target(name: "D", swiftSettings: [.unsafeFlags(["-Ounchecked"])]),
+        .target(name: "D", swiftSettings: [.unsafeFlags([""])]),
         .testTarget(name: "DTests", dependencies: ["D", "TestLibrary"]),
         .target(name: "E", swiftSettings: [.unsafeFlags(["-Ounchecked"])]),
         .testTarget(name: "ETests", dependencies: ["E", "TestLibrary"]),
