@@ -2,7 +2,7 @@ import XCTest
 import TestLibrary
 
 final class DTests: XCTestCase, TimeLimit {
-    let timeLimit: TimeInterval = 15.0
+    let timeLimit: TimeInterval = 5.0
 
     func testExample() throws {
         let cases: [TestCase] = [

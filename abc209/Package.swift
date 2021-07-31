@@ -7,9 +7,9 @@ let package = Package(
     targets: [
         .target(name: "A", swiftSettings: [.unsafeFlags(["-Ounchecked"])]),
         .testTarget(name: "ATests", dependencies: ["A", "TestLibrary"]),
-        .target(name: "B", swiftSettings: [.unsafeFlags(["-Ounchecked"])]),
+        .target(name: "B"),
         .testTarget(name: "BTests", dependencies: ["B", "TestLibrary"]),
-        .target(name: "C", swiftSettings: [.unsafeFlags(["-Ounchecked"])]),
+        .target(name: "C"),
         .testTarget(name: "CTests", dependencies: ["C", "TestLibrary"]),
         .target(name: "D"),
         .testTarget(name: "DTests", dependencies: ["D", "TestLibrary"]),
